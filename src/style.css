@@ -1,0 +1,8 @@
+#app {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  min-height: 90vh; /* Make it at least as tall as the viewport */
+  text-align: center; /* Centers text elements, if any */
+  background-color: grey;
+}

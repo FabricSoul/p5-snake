@@ -1,0 +1,21 @@
+{
+  "name": "p5-snake",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "@types/p5": "^1.7.6",
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "p5": "^1.9.0"
+  }
+}
