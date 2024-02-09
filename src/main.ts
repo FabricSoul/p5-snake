@@ -14,6 +14,11 @@ class Snake {
   snakeLength: number;
   snakeBody: Array<{ x: number; y: number }>;
 
+  //best catch
+  manhattan: number;
+  record: number;
+  bestcatch: boolean;
+  
   constructor() {
     this.x = 15;
     this.y = 20;
@@ -30,12 +35,20 @@ class Snake {
   }
 
   update() {
+    this.record+=1;//best catch
+    //after 3 updates, bestcatch disappears.
+    if(this.record>3){
+      this.bestcatch=false;
+    }
     if (this.foodEaten) {
       this.food = {
         x: Math.floor((Math.random() * 800) / grid),
         y: Math.floor((Math.random() * 600) / grid),
       };
       this.foodEaten = false;
+
+      //best catch
+      this.manhattan=Math.abs(this.food.x-this.x)+Math.abs(this.food.y-this.y);
     }
     if (this.x * grid <= 800 - grid && this.x * grid >= 0) {
       this.x += this.xSpeed;
@@ -52,6 +65,13 @@ class Snake {
     if (this.x === this.food.x && this.y === this.food.y) {
       this.foodEaten = true;
       this.snakeLength++;
+      //best catch
+      if(this.manhattan==this.record){
+        this.bestcatch=true;
+      }else{
+        this.bestcatch=false;
+      }
+      this.record=0;
     }
 
     // update the position of the snake by updating the array
@@ -83,6 +103,12 @@ class Snake {
         grid
       );
     }
+    //render "best catch"
+    if(this.bestcatch){
+      p.fill(255,0,0);
+      p.textsize(10);
+      p.text("Best Catch",380,10);
+    } 
   }
 
   direction(x: number, y: number) {
