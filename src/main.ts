@@ -18,6 +18,8 @@ class Snake {
   manhattan: number;
   record: number;
   bestcatch: boolean;
+  start: boolean;
+  starttime: number;
   
   constructor() {
     this.x = 15;
@@ -37,10 +39,17 @@ class Snake {
     this.manhattan=0;
     this.record=0;
     this.bestcatch=false;
-    
+    this.start=true;
+    this.starttime=0;
   }
 
   update() {
+    if(this.start){
+      this.starttime+=1;
+    }
+    if(this.starttime>3){
+      this.start=false;
+    }
     this.record+=1;//best catch
     //after 3 updates, bestcatch disappears.
     if(this.record>3){
@@ -109,11 +118,19 @@ class Snake {
         grid
       );
     }
-    //render "best catch"
+    //render "best catch" and its counterpart
     if(this.bestcatch){
       p.fill(255,0,0);
       p.textSize(10);
       p.text("Best Catch",380,10);
+    }else if(this.start){
+      p.fill(255,0,0);
+      p.textSize(10);
+      p.text("Here we go!",380,10);
+    }else{
+      p.fill(255,0,0);
+      p.textSize(10);
+      p.text("You did it!",380,10);
     } 
   }
 
