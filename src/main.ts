@@ -32,6 +32,12 @@ class Snake {
     this.foodEaten = true;
     this.snakeLength = 1;
     this.snakeBody = [{ x: this.x, y: this.y }];
+
+    //initialize best catch
+    this.manhattan=0;
+    this.record=0;
+    this.bestcatch=false;
+    
   }
 
   update() {
@@ -106,7 +112,7 @@ class Snake {
     //render "best catch"
     if(this.bestcatch){
       p.fill(255,0,0);
-      p.textsize(10);
+      p.textSize(10);
       p.text("Best Catch",380,10);
     } 
   }
